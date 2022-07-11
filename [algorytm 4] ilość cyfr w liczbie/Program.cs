@@ -17,6 +17,10 @@ while (run)
     }
     else if (int.TryParse(number, out int value)) // if the input is an intiger
     {
+        if (value < 0)
+            value = value * (-1);
+
+        number = value.ToString();
         digits.AddRange(number);
         Console.WriteLine("Number of all digits: " + digits.Count);
         digits = digits.Distinct().ToList();  //getting rid of duplicates
