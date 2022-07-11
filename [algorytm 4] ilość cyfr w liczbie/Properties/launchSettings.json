@@ -1,8 +1,7 @@
 {
   "profiles": {
     "[algorytm 4] ilość cyfr w liczbie": {
-      "commandName": "Project",
-      "commandLineArgs": "12234"
+      "commandName": "Project"
     }
   }
 }

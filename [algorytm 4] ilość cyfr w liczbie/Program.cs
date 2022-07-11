@@ -38,6 +38,19 @@ static bool countDigits(string number)
         Console.WriteLine("Number of digits but duplicates doesn't count: " + digits.Count);
         digits.Clear();
     }
+    else if (IsFloat(number))
+    {
+        float.TryParse(number, out float value2);
+        if (value2 < 0)
+            value2 = value2 * (-1);
+
+        number = value2.ToString();
+        digits.AddRange(number);
+        Console.WriteLine("Number of all digits: " + (digits.Count - 1));
+        digits = digits.Distinct().ToList();  //getting rid of duplicates
+        Console.WriteLine("Number of digits but duplicates doesn't count: " + (digits.Count - 1));
+        digits.Clear();
+    }
     else
     {
         Console.Clear();
@@ -46,4 +59,10 @@ static bool countDigits(string number)
     Console.WriteLine();
 
     return run;
+}
+
+static bool IsFloat(string number)
+{
+    float floatnumber;
+    return float.TryParse(number, out floatnumber);
 }
