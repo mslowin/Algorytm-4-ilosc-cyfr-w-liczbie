@@ -1,16 +1,27 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+bool run = true;
 
-bool run= true;
-List<char> digits = new List<char>();
-
-
-Console.WriteLine("Enter an intiger. q to exit.\n");
-
-
-while (run)
+if (args.Length == 0 || args.Length > 1)
 {
-    string number = Console.ReadLine();
+    Console.WriteLine("Enter an intiger. q to exit.\n");
+    while (run)
+    {
+        string number = Console.ReadLine();
+        run = countDigits(number);
+    }
+}
+else
+{
+    Console.WriteLine(args[0]);
+    string number = args[0].ToString();
+    run = countDigits(number);
+}
+
+static bool countDigits(string number)
+{
+    List<char> digits = new List<char>();
+    bool run = true;
     if (number == "q")
     {
         run = false;
@@ -26,7 +37,6 @@ while (run)
         digits = digits.Distinct().ToList();  //getting rid of duplicates
         Console.WriteLine("Number of digits but duplicates doesn't count: " + digits.Count);
         digits.Clear();
-
     }
     else
     {
@@ -34,6 +44,6 @@ while (run)
         Console.WriteLine("The input must be an intiger");
     }
     Console.WriteLine();
+
+    return run;
 }
-
-
