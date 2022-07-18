@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Globalization;
+
 bool run = true;
 
 if (args.Length == 0 || args.Length > 1)
@@ -7,6 +9,10 @@ if (args.Length == 0 || args.Length > 1)
     Console.WriteLine("Enter an intiger. q to exit.\n");
     while (run)
     {
+        CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+        customCulture.NumberFormat.NumberDecimalSeparator = ",";
+        Thread.CurrentThread.CurrentCulture = customCulture;
+
         string number = Console.ReadLine();
         run = countDigits(number);
     }
@@ -40,7 +46,7 @@ static bool countDigits(string number)
     }
     else if (IsFloat(number))
     {
-        float.TryParse(number, out float value2);
+        _ = float.TryParse(number, out float value2);
         if (value2 < 0)
             value2 = value2 * (-1);
 
@@ -54,7 +60,7 @@ static bool countDigits(string number)
     else
     {
         Console.Clear();
-        Console.WriteLine("The input must be an intiger");
+        Console.WriteLine("The input must be an intiger or a float with ','");
     }
     Console.WriteLine();
 
